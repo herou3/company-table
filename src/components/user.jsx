@@ -21,10 +21,12 @@ import api from "../api"
   return (
     <>
       {users.length > 0}
-      <span 
-        className={users.length > 0 ? "badge bg-primary" : "badge bg-danger"}>
-          {renderPhrase(users.length)} 
-      </span>
+      <h2>
+        <span 
+          className={users.length > 0 ? "badge bg-primary" : "badge bg-danger"}>
+            {renderPhrase(users.length)} 
+        </span>
+      </h2>
       { users.length > 0 ?
         <table className="table">
           <thead>
