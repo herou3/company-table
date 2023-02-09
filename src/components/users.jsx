@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import User from "./user";
 
 const Users = ({users, onDelete, onToggleBookMark}) => {
-  
+
   const handleToggleBookMark = (id) => {
     onToggleBookMark(id)
   }

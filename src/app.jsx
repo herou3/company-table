@@ -3,7 +3,6 @@ import api from "../src/api"
 import Users from './components/users';
 import SearchStatus from './components/searchStatus';
 
-
 const App = () => {
   const initialState = api.users.fetchAll()
   const [users, setUsers] = useState(initialState)
@@ -13,11 +12,10 @@ const App = () => {
   }
 
   const handleToggleBookMark = (userId) => {
-    setUsers(prevState=>prevState.map(user => {
-      if (user._id === userId) {
-        user.bookmark = !user.bookmark
-      }
-      return user
+    setUsers(users.map((user) => {
+      return user._id == userId ? {
+        ...user, bookmark: !user.bookmark
+      } : user
     }))
   }
 

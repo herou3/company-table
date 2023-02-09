@@ -10,7 +10,7 @@ const SearchStatus = (length) => {
     }
     if (number === 0) {
       return `Никто с тобой не тусанет`
-    }
+    }  
     return `${number} человек пойдет тусовать с тобой`
   }
 
