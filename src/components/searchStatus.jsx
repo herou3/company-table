@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-const SearchStatus = (length) => {
+const SearchStatus = ({ length }) => {
   const renderPhrase = (number) => {
     const valueLessHundred = Math.abs(number) % 100
     const valueLessTen = valueLessHundred % 10
@@ -19,12 +20,16 @@ const SearchStatus = (length) => {
   return (
     <h2>
       <span
-        className={length.length > 0 ? "badge bg-primary" : "badge bg-danger"}
+        className={length > 0 ? "badge bg-primary" : "badge bg-danger"}
       >
-        {renderPhrase(length.length)}
+        {renderPhrase(length)}
       </span>
     </h2>
   )
+}
+
+SearchStatus.propTypes = {
+  length: PropTypes.number.isRequired
 }
 
 export default SearchStatus
