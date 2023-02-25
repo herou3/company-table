@@ -14,7 +14,13 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
   const [selectedProf, setSelectedProf] = useState()
   useEffect(() => {
     console.log("Send request")
-    api.professions.fetchAll().then((data) => setProfessions(Object.assign(data, { allProfession: { name: "Все профессии" } })))
+    api.professions
+      .fetchAll()
+      .then((data) =>
+        setProfessions(
+          Object.assign(data, { allProfession: { name: "Все профессии" } })
+        )
+      )
   }, [])
   useEffect(() => {
     setCurrentPage(1)
@@ -36,16 +42,15 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
     setCurrentPage(pageIndex)
     console.log("handlePageChange", pageIndex)
   }
-  const clearFilters = () => { setSelectedProf() }
-  const filtredUsers = selectedProf && selectedProf._id
-    ? allUsers.filter((user) => {
-      console.log(selectedProf)
-      console.log(user)
-      console.log(user.profession)
-      console.log("---------------------")
-      return user.profession === selectedProf
-    })
-    : allUsers
+  const clearFilters = () => {
+    setSelectedProf()
+  }
+  const filtredUsers =
+    selectedProf && selectedProf._id
+      ? allUsers.filter((user) => {
+        return user.profession._id === selectedProf._id
+      })
+      : allUsers
   const count = filtredUsers.length
   const userCrop = paginate(filtredUsers, currentPage, pageSize)
 
@@ -58,7 +63,9 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
             items={professions}
             onItemSelect={handleProfessionSelect}
           />
-          <button className="btn btn-secondary mt-2" onClick={clearFilters}>Очистить</button>
+          <button className="btn btn-secondary mt-2" onClick={clearFilters}>
+            Очистить
+          </button>
         </div>
       )}
       {count > 0 && (

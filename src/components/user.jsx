@@ -15,9 +15,7 @@ const User = ({ user, onToggleBookMark, onDelete }) => {
         })}
       </td>
       <td>
-        <span key={user.profession._id}>
-          {user.profession.name}
-        </span>
+        <span key={user.profession._id}>{user.profession.name}</span>
       </td>
       <td>
         <span>{user.completedMeetings}</span>

@@ -1,10 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import api from "../src/api"
 import Users from "./components/users"
 
 const App = () => {
-  const initialState = api.users.fetchAll()
-  const [users, setUsers] = useState(initialState)
+  const [users, setUsers] = useState()
+
+  useEffect(() => {
+    console.log("Send request")
+    api.users.fetchAll()
+    api.users
+      .fetchAll()
+      .then((data) =>
+        setUsers(
+          Object.assign(data)
+        )
+      )
+  }, [])
 
   const handleDelete = (userId) => {
     setUsers((prevState) => prevState.filter((user) => user._id !== userId))
