@@ -13,14 +13,9 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   useEffect(() => {
-    console.log("Send request")
-    api.professions
-      .fetchAll()
-      .then((data) =>
-        setProfessions(
-          Object.assign(data, { allProfession: { name: "Все профессии" } })
-        )
-      )
+    api.professions.fetchAll().then((data) => {
+      setProfessions(data)
+    })
   }, [])
   useEffect(() => {
     setCurrentPage(1)
@@ -40,7 +35,6 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
-    console.log("handlePageChange", pageIndex)
   }
   const clearFilters = () => {
     setSelectedProf()
