@@ -10,25 +10,25 @@ const GroupList = ({
 }) => {
   return (
     <ul className="list-group">
-      {(typeof !Array.isArray(items)
+      {(!Array.isArray(items)
         ? Object.keys(items)
         : items)
         .map((item) => {
           return (
             <li
               key={
-                items[item][valueProperty] !== undefined
+                items[item] !== undefined
                   ? items[item][valueProperty]
-                  : "defaultId"
+                  : item._id
               }
               className={
                 "list-group-item" +
-                (items[item] === selectedItem ? " active" : "")
+                (((JSON.stringify(items[item]) === JSON.stringify(selectedItem) && items[item] !== undefined) || item === selectedItem) ? " active" : "")
               }
-              onClick={() => onItemSelect(items[item])}
+              onClick={items[item] !== undefined ? () => onItemSelect(items[item]) : () => onItemSelect(item)}
               role="button"
             >
-              {items[item][contentProperty]}
+              {items[item] !== undefined ? items[item][contentProperty] : item[contentProperty]}
             </li>
           )
         })}

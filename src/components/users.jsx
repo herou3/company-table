@@ -62,7 +62,7 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
           </button>
         </div>
       )}
-      {count > 0 && (
+      {count >= 0 && (
         <div className="d-dlex flex-column">
           <SearchStatus length={filtredUsers.length} />
           <table className="table">
