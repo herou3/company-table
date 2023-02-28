@@ -51,7 +51,7 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
   return (
     <div className="d-flex justify-content-center">
       {professions && (
-        <div className="d-flex.flex-column.flex-shrink-0.p-3">
+        <div className="d-flex flex-column flex-shrink-0 p-3">
           <GroupList
             selectedItem={selectedProf}
             items={professions}
