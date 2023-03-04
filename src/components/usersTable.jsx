@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import Bookmark from "./bookmark"
 import QualitiesList from "./qualitiesList"
 import Table from "./table"
+// import TableHeader from "./tableHeader"
+// import TableBody from "./tableBody"
 
 const UserTable = ({
   users,
@@ -46,8 +48,7 @@ const UserTable = ({
       selectedSort={selectedSort}
       columns={columns}
       data={users}
-    >
-    </Table>
+    />
   )
 }
 
