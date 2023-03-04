@@ -13,7 +13,7 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
-  const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" })
+  const [sortBy, setSortBy] = useState({ path: "name", order: "asc" })
 
   useEffect(() => {
     api.professions.fetchAll().then((data) => {
@@ -46,7 +46,7 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
       })
       : allUsers
   const count = filtredUsers.length
-  const sortedUsers = _.orderBy(filtredUsers, [sortBy.iter], [sortBy.order])
+  const sortedUsers = _.orderBy(filtredUsers, [sortBy.path], [sortBy.order])
   const usersCrop = paginate(sortedUsers, currentPage, pageSize)
   return (
     <div className="d-flex justify-content-center">
@@ -68,7 +68,7 @@ const Users = ({ users: allUsers, onDelete, onToggleBookMark }) => {
           <UserTable
             users={usersCrop}
             onSort={handleSort}
-            currentSort={sortBy}
+            selectedSort={sortBy}
             onDelete={onDelete}
             onToggleBookMark={onToggleBookMark}
           />

@@ -10,9 +10,6 @@ const User = ({ user, onToggleBookMark, onDelete }) => {
         <span>{user.name}</span>
       </td>
       <td>
-        {user.qualities.map((quality) => {
-          return <Qualities key={quality.name} {...quality}></Qualities>
-        })}
       </td>
       <td>
         <span key={user.profession._id}>{user.profession.name}</span>
@@ -24,20 +21,8 @@ const User = ({ user, onToggleBookMark, onDelete }) => {
         <span>{user.rate}</span>
       </td>
       <td>
-        <Bookmark
-          isBookmark={user.bookmark}
-          onClick={() => onToggleBookMark(user._id)}
-        />
       </td>
-      <td>
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => onDelete(user._id)}
-        >
-          delete
-        </button>
-      </td>
+      <td></td>
     </tr>
   )
 }
