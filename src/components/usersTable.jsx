@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Bookmark from "./bookmark"
 import QualitiesList from "./qualitiesList"
-import Table from "./table"
+import Table from "./table/table"
 // import TableHeader from "./tableHeader"
 // import TableBody from "./tableBody"
 
