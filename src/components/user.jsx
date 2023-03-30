@@ -1,32 +1,36 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+import QualitiesList from "./qualitiesList"
+import api from "../api"
 
-const User = ({ user }) => {
-  return (
-    <tr key={user._id}>
-      <td>
-        <span>{user.name}</span>
-      </td>
-      <td></td>
-      <td>
-        <span key={user.profession._id}>{user.profession.name}</span>
-      </td>
-      <td>
-        <span>{user.completedMeetings}</span>
-      </td>
-      <td>
-        <span>{user.rate}</span>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-  )
+const User = ({ id }) => {
+
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    console.log("Send request")
+    api.users.getById(id.toString()).then((data) => setUser(Object.assign(data)))
+  }, [])
+
+  if (user) {
+    console.log(user)
+    return (
+      <>
+        <h1>{user.name}</h1>
+        <h2>Профессия: {user.profession}</h2>
+        <QualitiesList qualities={user.qualities} />
+        <p>completedMeetings: {user.completedMeetings}</p>
+        <h2>Rate: {user.rate}</h2>
+        <Link to={`/posts`}>Вся компашка</Link>
+      </>
+    )
+  }
+  return "loading..."
 }
 
 User.propTypes = {
-  user: PropTypes.object.isRequired,
-  onToggleBookMark: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default User
