@@ -1,16 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Bookmark from "./bookmark"
-import Qualities from "./qualitie"
 
-const User = ({ user, onToggleBookMark, onDelete }) => {
+const User = ({ user }) => {
   return (
     <tr key={user._id}>
       <td>
         <span>{user.name}</span>
       </td>
-      <td>
-      </td>
+      <td></td>
       <td>
         <span key={user.profession._id}>{user.profession.name}</span>
       </td>
@@ -20,8 +17,7 @@ const User = ({ user, onToggleBookMark, onDelete }) => {
       <td>
         <span>{user.rate}</span>
       </td>
-      <td>
-      </td>
+      <td></td>
       <td></td>
     </tr>
   )

@@ -15,7 +15,10 @@ const UserTable = ({
 }) => {
   const columns = {
     name: { path: "name", name: "Имя" },
-    qualities: { name: "Качество", component: (user) => <QualitiesList qualities={user.qualities} /> },
+    qualities: {
+      name: "Качество",
+      component: (user) => <QualitiesList qualities={user.qualities} />
+    },
     professions: { path: "profession.name", name: "Профессия" },
     completedMeetings: { path: "completedMeetings", name: "Встретились, раз" },
     rate: { path: "rate", name: "Оценка" },
