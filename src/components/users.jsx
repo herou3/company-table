@@ -18,7 +18,6 @@ const Users = () => {
 
   useEffect(() => {
     console.log("Send request")
-    api.users.fetchAll()
     api.users.fetchAll().then((data) => setUsers(Object.assign(data)))
   }, [])
 

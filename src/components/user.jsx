@@ -8,24 +8,20 @@ const User = ({ id }) => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    console.log("Send request")
     api.users
       .getById(id.toString())
       .then((data) => setUser(Object.assign(data)))
   }, [])
 
   if (user) {
-    const targetUser = Object.assign(user)
     console.log(user)
-    console.log(targetUser)
-    console.log(user.profession.name)
     return (
       <>
-        <h1>{targetUser.name}</h1>
+        <h1>{user.name}</h1>
         <h2>Профессия: {user.profession.name}</h2>
-        <QualitiesList qualities={targetUser.qualities} />
-        <p>completedMeetings: {targetUser.completedMeetings}</p>
-        <h2>Rate: {targetUser.rate}</h2>
+        <QualitiesList qualities={user.qualities} />
+        <p>completedMeetings: {user.completedMeetings}</p>
+        <h2>Rate: {user.rate}</h2>
         <Link to={`/users`}>Вся компашка</Link>
       </>
     )
