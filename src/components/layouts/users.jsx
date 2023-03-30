@@ -1,20 +1,13 @@
 import React from "react"
-import PropTypes from "prop-types"
-import { useParams, useLocation } from "react-router-dom"
-import UsersList from "./../users"
+import { useParams } from "react-router-dom"
 import User from "./../user"
+import UserList from "./../users"
 
 const Users = () => {
   const params = useParams()
-  const location = useLocation()
   const { userId } = params
 
-
-  return (
-    <>
-      {userId ? <User id = { userId } history = {history} /> : <Users />}
-    </>
-  )
+  return <>{userId ? <User id={userId} history={history} /> : <UserList />}</>
 }
 
 export default Users

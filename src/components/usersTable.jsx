@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Bookmark from "./bookmark"
 import QualitiesList from "./qualitiesList"
 import Table from "./table/table"
+import UserLink from "./userLink"
 // import TableHeader from "./tableHeader"
 // import TableBody from "./tableBody"
 
@@ -14,7 +15,10 @@ const UserTable = ({
   onToggleBookMark
 }) => {
   const columns = {
-    name: { path: "name", name: "Имя" },
+    name: {
+      path: "name",
+      component: (user) => <UserLink _id={user._id} name={user.name}/>
+    },
     qualities: {
       name: "Качество",
       component: (user) => <QualitiesList qualities={user.qualities} />
