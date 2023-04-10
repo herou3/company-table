@@ -17,7 +17,6 @@ const Users = () => {
   const [users, setUsers] = useState()
 
   useEffect(() => {
-    console.log("Send request")
     api.users.fetchAll().then((data) => setUsers(Object.assign(data)))
   }, [])
 

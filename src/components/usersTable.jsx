@@ -17,6 +17,7 @@ const UserTable = ({
   const columns = {
     name: {
       path: "name",
+      name: "Имя",
       component: (user) => <UserLink _id={user._id} name={user.name}/>
     },
     qualities: {

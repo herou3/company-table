@@ -14,7 +14,6 @@ const User = ({ id }) => {
   }, [])
 
   if (user) {
-    console.log(user)
     return (
       <>
         <h1>{user.name}</h1>
