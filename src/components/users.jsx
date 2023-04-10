@@ -37,7 +37,7 @@ const Users = () => {
     )
   }
   const handleSearchUser = (event) => {
-    if (selectedProf) {
+    if (searchingText.length === 0) {
       clearFilters()
     }
     setSearchingText(event.target.value)
@@ -52,8 +52,8 @@ const Users = () => {
   }, [selectedProf])
 
   const handleProfessionSelect = (item) => {
-    if (searchingText) {
-      clearSearchingProcess()
+    if (!selectedProf) {
+      clearFilters()
     }
     setSelectedProf(item)
   }
@@ -68,9 +68,6 @@ const Users = () => {
 
   const clearFilters = () => {
     setSelectedProf()
-  }
-  const clearSearchingProcess = () => {
-    console.log("clearSearchingProcess call")
     setSearchingText("")
   }
 
