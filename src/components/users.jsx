@@ -13,8 +13,8 @@ const Users = () => {
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [sortBy, setSortBy] = useState({ path: "name", order: "asc" })
-
   const [users, setUsers] = useState()
+  const [searchingText, setSearchingText] = useState("")
 
   useEffect(() => {
     api.users.fetchAll().then((data) => setUsers(Object.assign(data)))
@@ -36,7 +36,12 @@ const Users = () => {
       })
     )
   }
-
+  const handleSearchUser = (event) => {
+    if (selectedProf) {
+      clearFilters()
+    }
+    setSearchingText(event.target.value)
+  }
   useEffect(() => {
     api.professions.fetchAll().then((data) => {
       setProfessions(data)
@@ -47,6 +52,9 @@ const Users = () => {
   }, [selectedProf])
 
   const handleProfessionSelect = (item) => {
+    if (searchingText) {
+      clearSearchingProcess()
+    }
     setSelectedProf(item)
   }
 
@@ -61,14 +69,24 @@ const Users = () => {
   const clearFilters = () => {
     setSelectedProf()
   }
+  const clearSearchingProcess = () => {
+    console.log("clearSearchingProcess call")
+    setSearchingText("")
+  }
 
   if (users) {
     const filtredUsers =
-      selectedProf && selectedProf._id
+      (selectedProf && !searchingText) && selectedProf._id
         ? users.filter((user) => {
           return user.profession._id === selectedProf._id
         })
-        : users
+        : (
+          searchingText
+            ? users.filter((user) => {
+              return String(user.name).toLowerCase().includes(searchingText.toLowerCase())
+            })
+            : users
+        )
     const count = filtredUsers.length
     const sortedUsers = _.orderBy(filtredUsers, [sortBy.path], [sortBy.order])
     const usersCrop = paginate(sortedUsers, currentPage, pageSize)
@@ -89,6 +107,9 @@ const Users = () => {
         {count >= 0 && (
           <div className="d-dlex flex-column">
             <SearchStatus length={filtredUsers.length} />
+            <div className="input-group mb-3">
+              <input type="text" value={searchingText} className="form-control" placeholder="🔍 Search..." aria-label="search" aria-describedby="basic-addon1" onChange={handleSearchUser}/>
+            </div>
             <UserTable
               users={usersCrop}
               onSort={handleSort}

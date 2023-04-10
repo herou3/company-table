@@ -4,8 +4,6 @@ import Bookmark from "./bookmark"
 import QualitiesList from "./qualitiesList"
 import Table from "./table/table"
 import UserLink from "./userLink"
-// import TableHeader from "./tableHeader"
-// import TableBody from "./tableBody"
 
 const UserTable = ({
   users,

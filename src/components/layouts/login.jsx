@@ -3,7 +3,6 @@ import TextField from "../textField"
 import { validator } from "../../utils/validator"
 
 const Login = () => {
-  const [isShowPassword, setIsShowPassword] = useState(false)
   const [data, setData] = useState({ email: "", password: "" })
   const [errors, setErrors] = useState({})
   const isValid = Object.keys(errors).length === 0
@@ -48,23 +47,10 @@ const Login = () => {
     console.log(event)
   }
 
-  const onShowPassword = (event) => {
-    setIsShowPassword(!isShowPassword)
-    event.preventDefault()
-  }
-
   const validate = () => {
     const errors = validator(data, validatorConfig)
     setErrors(errors)
     return Object.keys(errors).length === 0
-  }
-
-  const getCurrentStatus = () => {
-    if (isShowPassword === true) {
-      return "text"
-    } else {
-      return "password"
-    }
   }
 
   return (
@@ -74,8 +60,8 @@ const Login = () => {
           <h3 className="mb-4">Login</h3>
           <form onSubmit={handleSubmit}>
             <TextField labelText="Email" name="email" value={data.email} onChange={handleChange} error={errors.email}/>
-            <TextField labelText="Password" name="password" type={getCurrentStatus()} value={data.password} onChange={handleChange} error={errors.password} onExtraAction={(element) => onShowPassword(element)} status={isShowPassword} buttonTexts={["Hide Password", "Show Password"]} />
-            <button disabled={!isValid} className="btn btn-primary w-100 mx-auto">Submit</button>
+            <TextField labelText="Password" name="password" type="password" value={data.password} onChange={handleChange} error={errors.password} />
+            <button disabled={!isValid} className="btn btn-primary w-100">Submit</button>
           </form>
         </div>
       </div>
